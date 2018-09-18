@@ -24,3 +24,23 @@ def sol_affine(t,y0):
 
     """
     return y0*np.exp(a*t) - b * (1.-np.exp(a*t))/a
+def f_carree(t,y):
+    """Fonction pour y' = ay^2+b
+    
+    """
+    return a*(y**2)+b
+def sol_carree(t,y0):
+    """Solution exacte selon le signe de (1-y) et (1+y)
+    
+    """
+    if (1-y < 0) and (1+y < 0):
+        c = np.log(1) - y0
+        sol = (np.exp(2*t+c)-1) / (np.exp(2*t+c)+1)
+    if (1-y < 0) and (1+y > 0):
+        print("Error: l'équation n'a pas de solution.")
+    if (1-y > 0) and (1+y > 0):
+        c = np.log(1) + y0
+        sol = (np.exp(2*t+c)-1) / (np.exp(2*t+c)+1)
+    if (1-y > 0) and (1+y < 0):
+        print("Error: l'équation n'a pas de solution.")
+    return sol
